@@ -26,7 +26,7 @@ const altTxt = [
 for (i = 0; i < pics.length; i++) {
     const newImage = document.createElement('img');
     newImage.setAttribute('src', `img/${pics[i]}`);
-    newImage.setAttribute('alt', 'altText[i]');
+    newImage.setAttribute('alt', altTxt[i]);
     thumbBar.appendChild(newImage);
     newImage.addEventListener('click', (event) => {
         displayedImage.setAttribute('src', newImage.src);
@@ -36,13 +36,14 @@ for (i = 0; i < pics.length; i++) {
 
 /* Wiring up the Darken/Lighten button */
 btn.addEventListener('click', (event) => {
-    if (btn.getAttribute('class', 'dark')) {
+    const btnClass = btn.getAttribute('class');
+    if(btnClass === 'dark') { //Previously I basically had if(btnClass)...whish is always true?
         btn.setAttribute('class', 'light');
         btn.textContent = 'Lighten';
         overlay.style.backgroundColor = 'rgba(0,0,0,0.5)';
     } else {
         btn.setAttribute('class', 'dark');
         btn.textContent = 'Darken';
-        overlay.style.backgroundColor = 'rgba(0,0,0,0,0)';
+        overlay.style.backgroundColor = 'rgba(0,0,0,0)'; //had an extra 0 
     }
-})
+});
